@@ -9,5 +9,16 @@ TypeError: Data location must be "memory" or "calldata" for return parameter in 
 20 |     function getLastName() external returns(string);
 ```
 
-字符串无法作为函数参数传参，可以选择用定长数组`bytesX`
+字符串作为函数参数传参要
 
+```js
+ function getFirstName() external view returns(string memory){
+        return firstName;
+    }
+```
+
+也可以选择用定长数组`bytesX`
+
+```js
+
+```
