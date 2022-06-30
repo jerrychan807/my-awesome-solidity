@@ -5,14 +5,13 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     const {deployments, getNamedAccounts} = hre;
     const {deploy} = deployments;
 
-    await hre.storageLayout.export();
     const {Owner} = await getNamedAccounts();
 
-    await deploy('Logic', {
+    await deploy('Proxy', {
         from: Owner,
         args: [],
         log: true,
     });
 };
 export default func;
-func.tags = ['Logic'];
+func.tags = ['Proxy'];

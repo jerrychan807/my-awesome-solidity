@@ -73,6 +73,7 @@ async function setup() {
 
 describe("Token contract", function () {
     describe("test setImplementationAddress", function () {
+        // 错误测试脚本
         it("", async function () {
             const {Logic, SimpleProxy, users, Owner, Owner1} = await setup();
 
@@ -113,6 +114,10 @@ describe("Token contract", function () {
             expect(implementationAddress).to.equal(Logic.address);
             console.log('SimpleProxy setImplementationAddress successfully');
 
+            // 查询存储槽位置0的值
+            const storageData = await ethers.provider.getStorageAt(SimpleProxy.address, 0);
+            console.log('slotNum: 0 ' + 'storageData: ' + storageData);
+
             // 从logic合约查询Int
             // test_can_get_value_from_implementation
             const namedAccounts = await getNamedAccounts();
@@ -125,9 +130,12 @@ describe("Token contract", function () {
 
             // test_can_set_value_from_proxy
             await proxyLogicContract.setMyInt(20);
+            // 查询存储槽位置0的值
+            const storageData1 = await ethers.provider.getStorageAt(SimpleProxy.address, 0);
+
             implementationAddress = await Owner.SimpleProxy.getImplementationAddress();
             console.log('implementationAddress: ' + implementationAddress);
-
+            console.log('slotNum: 0 ' + 'storageData: ' + storageData);
             console.log('logic Address: ' + Logic.address);
             expect(implementationAddress).not.to.equal(Logic.address);
         });

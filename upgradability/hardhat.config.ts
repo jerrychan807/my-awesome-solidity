@@ -1,6 +1,7 @@
 import {HardhatUserConfig} from 'hardhat/types';
 import 'hardhat-deploy';
 import 'hardhat-deploy-ethers';
+import 'hardhat-storage-layout';
 
 const config: HardhatUserConfig = {
     defaultNetwork: "hardhat",
@@ -18,6 +19,11 @@ const config: HardhatUserConfig = {
             optimizer: {
                 enabled: true,
                 runs: 300,
+            },
+            outputSelection: {
+                "*": {
+                    "*": ["storageLayout"],
+                },
             },
         },
     },
