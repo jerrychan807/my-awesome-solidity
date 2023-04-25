@@ -1,4 +1,4 @@
-// scripts/1.deploy_box.ts
+// scripts/1.set_uri.ts
 import {ethers} from "hardhat"
 import {upgrades} from "hardhat"
 
